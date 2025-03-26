@@ -16,7 +16,10 @@ class RuleEngineController extends Controller
 
     public function testRule()
     {
-        $data = $this->ruleEngine->evaluate();
+        $rule = 'stock < 5 && price > 100';
+        $data = ['stock' => 10, 'price' => 200];
+
+        $data = $this->ruleEngine->evaluate($rule, $data);
 
         if (isset($data['error'])) {
             return $data['error'];
